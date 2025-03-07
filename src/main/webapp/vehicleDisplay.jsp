@@ -6,32 +6,44 @@
     <title>Vehicle Display</title>
     <!-- Bootstrap CSS for styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color:white;
             padding-top: 80px;
         }
 
-        .navbar {
-            background-color: #070442;
-            color: white;
+   .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7) !important;  /* Fully transparent */
+            transition: background 0.3s ease-in-out;
         }
-
-        .navbar .company-name {
-            font-size: 20px;
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.7) !important; /* Dark background on scroll */
+        }
+        .navbar-brand {
+            font-size: 24px;
             font-weight: bold;
+            color: black !important;
         }
-
-        .navbar-links a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
-
-        .navbar-links a:hover {
-            color: yellow;
-            text-decoration: underline;
+        .navbar-nav .nav-link:hover {
+            color: #28a745 !important; /* Green hover effect */
         }
 
         .vehicle-list {
@@ -45,15 +57,17 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: white;
             transition: transform 0.3s ease-in-out;
+           
         }
 
         .vehicle-card:hover {
             transform: translateY(-10px);
+              background-color: yellow;
         }
 
         .vehicle-card img {
             width: 100%;
-            height: 250px; /* You can set a fixed height for images */
+            height: 150px; /* You can set a fixed height for images */
             object-fit: cover; /* Ensures that the image fills the space without distortion */
         }
 
@@ -90,7 +104,8 @@
         }
 
         .btn-book-now:hover {
-            background-color: #e66500;
+            background-color: #070442;
+                  color: yellow;
         }
 
         .footer {
@@ -113,17 +128,25 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <div class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">TechFix Computer</a>
-            <div class="navbar-links ml-auto">
-                <a class="nav-link" href="#">Home</a>
-                <a class="nav-link" href="login.jsp">Login</a>
-                <a class="nav-link" href="register.jsp">Register</a>
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-car"></i> MEGA<span class="text-success">CITY</span> <i class=></i> CABS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"> 
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="http://localhost:8090/assiment/vehicles"><i class="fas fa-home"></i> Home</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="my.jsp"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.jsp"><i class="fas fa-user-plus"></i> Register</a></li>
+                </ul>
             </div>
         </div>
-    </div>
+    </nav>
 
     <!-- Vehicle Display Section -->
     <div class="container mt-5 pt-5">
@@ -147,7 +170,7 @@
                         </div>
                         <div class="vehicle-card-footer text-center">
                       <!-- In the vehicle display section -->
-                    <a href="http://localhost:8090/sanomi/booking?vehicleId=${vehicle.id}" class="btn btn-book-now">Book Now</a>
+                    <a href="http://localhost:8090/mega_city_cab_service/booking?vehicleId=${vehicle.id}" class="btn btn-book-now">Book Now</a>
 
 
                         </div>
@@ -156,14 +179,36 @@
             </c:forEach>
         </div>
     </div>
+    
+    <footer class="footer mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Section -->
+            <div class="col-md-4">
+                <h5><i class="fas fa-envelope"></i> Contact Us</h5>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, City, Country</p>
+                <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                <p><i class="fas fa-envelope"></i> support@techfix.com</p>
+
+                <!-- Social Media -->
+                <div class="social-icons mt-3">
+                    <a href="#" class="text-light"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <!-- Footer Section -->
-    <div class="footer">
-        <p>&copy; 2024 TechFix Computer. All rights reserved.</p>
-    </div>
+  
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+     
 </body>
 </html>
