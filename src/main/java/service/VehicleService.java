@@ -150,4 +150,20 @@ private byte[] convertInputStreamToBytes(InputStream inputStream) throws IOExcep
     }
     return byteArrayOutputStream.toByteArray(); // Return the byte array
 }
+
+public boolean deleteVehicle(int vehicleId) {
+    String query = "DELETE FROM vehicles WHERE id = ?";
+    
+    try (Connection con = database.getcon();
+         PreparedStatement pstmt = con.prepareStatement(query)) {
+        pstmt.setInt(1, vehicleId);
+
+        // Execute the delete query
+        int result = pstmt.executeUpdate();
+        return result > 0;
+    } catch (SQLException | ClassNotFoundException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }

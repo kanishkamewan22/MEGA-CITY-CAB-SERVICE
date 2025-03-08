@@ -167,7 +167,7 @@
                         </div>
                         <div class="vehicle-card-footer text-center">
                       <!-- In the vehicle display section -->
-                    <a href="http://localhost:8090/city_cabs/delete?vehicleid=${vehicle.id}" class="btn btn-book-now">Delete</a>
+                    <a href="http://localhost:8090/mega_city_cab_service/delete?vehicleid=${vehicle.id}" class="btn btn-book-now">Delete</a>
                     <a href="http://localhost:8090/packtis/updateVehicle?vehicleid=${vehicle.id}" class="btn btn-book-now">Update</a>
                     
 
