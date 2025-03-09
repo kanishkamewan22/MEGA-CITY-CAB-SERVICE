@@ -26,4 +26,9 @@
 	        request.setAttribute("bookings", bookings);
 	        request.getRequestDispatcher("/viewBookings.jsp").forward(request, response);
 	    }
-	}
+	    
+	
+	    
+
+	
+}
