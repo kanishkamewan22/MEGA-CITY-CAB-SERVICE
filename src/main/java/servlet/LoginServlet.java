@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             if ("Administrator".equals(position)) {
                 response.sendRedirect("Adminpage.jsp");  // Redirect to admin page if the user is an admin
             } else if ("Client".equals(position)) {
-                response.sendRedirect("Clientpage.jsp");  // Redirect to client page if the user is a client
+                response.sendRedirect("http://localhost:8090/mega_city_cab_service/vehicles");  // Redirect to client page if the user is a client
             }
         } else {
             // If invalid, set error message and forward back to login page

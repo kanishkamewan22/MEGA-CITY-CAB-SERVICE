@@ -14,7 +14,7 @@ public class LoginService {
         String table = position.equals("Administrator") ? "administrators" : "clients";
         
         // SQL query to check for matching username and password
-        String query = "SELECT * FROM " + table + " WHERE username = ? AND password_hash = ?";
+        String query = "SELECT * FROM " + table + " WHERE email = ? AND password_hash = ?";
 
         try (Connection con = database.getcon();  // Using the database class to get the connection
              PreparedStatement ps = con.prepareStatement(query)) {
