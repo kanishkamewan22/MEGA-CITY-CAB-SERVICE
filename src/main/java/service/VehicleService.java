@@ -106,7 +106,7 @@ public class VehicleService {
             connection = DriverManager.getConnection(url, username, password);
 
             // Define the SQL update query
-            String query = "UPDATE user.vehicles SET vehicleName = ?, vehicleModel = ?, vehicleType = ?, fuelType = ?, price = ?, modelYear = ?, engineSize = ?, vehiclePhoto = ?, vehiclePhototwo = ? WHERE id = ?";
+            String query = "UPDATE vehicles SET vehicleName = ?, vehicleModel = ?, vehicleType = ?, fuelType = ?, price = ?, modelYear = ?, engineSize = ?, vehiclePhoto = ?, vehiclePhototwo = ? WHERE id = ?";
             stmt = connection.prepareStatement(query);
 
             // Set the values in the query using the Vehicle object data

@@ -15,7 +15,43 @@ public class VehicleUpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // Handle POST request to update vehicle details
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String vehicleIdStr = request.getParameter("vehicleid");
+
+        if (vehicleIdStr != null && !vehicleIdStr.isEmpty()) {
+            try {
+                int vehicleId = Integer.parseInt(vehicleIdStr);
+
+                // Set the vehicleId in the session (this can be useful for later updates or bookings)
+                HttpSession session = request.getSession();
+                session.setAttribute("vehicleid", vehicleId); // Store vehicle ID in session
+
+                VehicleService vehicleService = new VehicleService();
+                Vehicle vehicle = vehicleService.getVehicleById(vehicleId);
+
+                if (vehicle != null) {
+                    // If vehicle is found, forward to update page with vehicle data
+                    request.setAttribute("vehicle", vehicle);
+                    request.getRequestDispatcher("/update.jsp").forward(request, response);
+                } else {
+                    // If vehicle is not found
+                    request.setAttribute("error", "Vehicle not found.");
+                    request.getRequestDispatcher("/update.jsp").forward(request, response);
+                }
+            } catch (NumberFormatException e) {
+                // Handle invalid vehicleId format
+                request.setAttribute("error", "Invalid vehicle ID format.");
+                request.getRequestDispatcher("/update.jsp").forward(request, response);
+            }
+        } else {
+            // If vehicle ID is missing
+            request.setAttribute("error", "Vehicle ID is missing.");
+            request.getRequestDispatcher("/update.jsp").forward(request, response);
+        }
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         // Get session and vehicle ID from session
         HttpSession session = request.getSession();
         Integer vehicleId = (Integer) session.getAttribute("vehicleid");
@@ -27,24 +63,11 @@ public class VehicleUpdateServlet extends HttpServlet {
             return;  // Stop further processing if vehicleId is missing
         }
 
-        // Get form data (e.g., vehicle name, model, etc.)
+        // Variables to hold form data
         String vehicleName = request.getParameter("vehicleName");
         String vehicleModel = request.getParameter("vehicleModel");
         String vehicleType = request.getParameter("vehicleType");
         String fuelType = request.getParameter("fuelType");
-
-        // Validate vehicle name and other required fields
-        if (vehicleName == null || vehicleName.trim().isEmpty()) {
-            request.setAttribute("error", "Vehicle Name cannot be empty.");
-            request.getRequestDispatcher("/update.jsp").forward(request, response);
-            return;
-        }
-
-        if (vehicleModel == null || vehicleModel.trim().isEmpty()) {
-            request.setAttribute("error", "Vehicle Model cannot be empty.");
-            request.getRequestDispatcher("/update.jsp").forward(request, response);
-            return;
-        }
 
         // Handle price and model year with null checks
         String priceStr = request.getParameter("price");
