@@ -143,13 +143,24 @@
 
                     <li class="nav-item"><a class="nav-link" href="my.jsp"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
                     <li class="nav-item"><a class="nav-link" href="register.jsp"><i class="fas fa-user-plus"></i> Register</a></li>
+
+                      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/mega_city_cab_service/viewBookingsByEmail"><i class="fas fa-book"></i> View Bookings</a></li>
                 </ul>
             </div>
         </div>
-    </nav>
+        
+        
+        
+    </nav><c:if test="${not empty sessionScope.email}">
+            <p>Welcome, <strong>${sessionScope.email}</strong></p>  <!-- Display the email -->
+        </c:if>
+    
+    
+    
 
     <!-- Vehicle Display Section -->
     <div class="container mt-5 pt-5">
+    
         <h2>Available Vehicles</h2>
         <div class="row">
             <!-- Loop through the vehicles list -->

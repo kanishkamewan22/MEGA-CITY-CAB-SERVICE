@@ -42,8 +42,19 @@ public class mewan extends HttpServlet {
             return;
         }
 
-        // Create the service class and register the user
+        // Check if the email already exists
         thula th = new thula();
+        boolean emailExists = th.checkEmailExists(app1.getEmail());  // Method to check if the email is already in use
+
+        if (emailExists) {
+            // Set error message if the email already exists
+            request.setAttribute("error", "This email is already registered.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        // If email does not exist, proceed to register the user
         boolean success = th.reg_user(app1);
 
         // If registration is successful

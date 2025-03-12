@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import service.LoginService;
 
@@ -19,7 +20,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
         String position = request.getParameter("position");
 
@@ -27,10 +28,19 @@ public class LoginServlet extends HttpServlet {
         LoginService loginService = new LoginService();
 
         // Validate user credentials
-        if (loginService.validateUser(username, password, position)) {
-            // If valid, redirect to the appropriate page
+        if (loginService.validateUser(email, password, position)) {
+        	
+        	 HttpSession session = request.getSession();
+             session.setAttribute("email", email); // Store email in session
+
+             
+             String bookingLink = "http://localhost:8090/mega_city_cab_service/viewBookingsByEmail?email=" + email;
+             
+             
+             
+            
             if ("Administrator".equals(position)) {
-                response.sendRedirect("Adminpage.jsp");  // Redirect to admin page if the user is an admin
+                response.sendRedirect("http://localhost:8090/mega_city_cab_service/adminp");  // Redirect to admin page if the user is an admin
             } else if ("Client".equals(position)) {
                 response.sendRedirect("http://localhost:8090/mega_city_cab_service/vehicles");  // Redirect to client page if the user is a client
             }

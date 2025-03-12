@@ -1,6 +1,7 @@
 package service;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -89,67 +90,61 @@ public class VehicleService {
         return vehicle;
     }
 
-public boolean updateVehicle(Vehicle vehicle) {
-    String query = "UPDATE vehicles SET vehicleName = ?, vehicleModel = ?, vehicleType = ?, fuelType = ?, "
-                 + "modelYear = ?, engineSize = ?, price = ?, vehiclePhoto = ?, vehiclePhototwo = ? WHERE id = ?";
+  
 
-    try (Connection con = database.getcon(); PreparedStatement ps = con.prepareStatement(query)) {
-        // Set the updated values for the vehicle details
-        ps.setString(1, vehicle.getVehicleName());
-        ps.setString(2, vehicle.getVehicleModel());
-        ps.setString(3, vehicle.getVehicleType());
-        ps.setString(4, vehicle.getFuelType());
-        ps.setInt(5, vehicle.getModelYear());
-        ps.setString(6, vehicle.getEngineSize());
-        ps.setDouble(7, vehicle.getPrice());
+    public boolean updateVehicle(Vehicle vehicle) {
+        boolean isUpdated = false;
+        Connection connection = null;
+        PreparedStatement stmt = null;
 
-        // Handle image upload as InputStream (Main image)
-        if (vehicle.getVehiclePhoto() != null) {
-            ps.setBytes(8, convertInputStreamToBytes(vehicle.getVehiclePhoto())); // vehicle photo
-        } else {
-            ps.setNull(8, java.sql.Types.BLOB); // Set NULL if no photo
+        try {
+            // Get the connection with correct credentials and database name
+            String url = "jdbc:mysql://localhost:3306/user"; // Replace 'user' with your actual database name
+            String username = "root"; // Use your MySQL username (root in your case)
+            String password = "admin"; // Use your MySQL password (admin in your case)
+            
+            connection = DriverManager.getConnection(url, username, password);
+
+            // Define the SQL update query
+            String query = "UPDATE user.vehicles SET vehicleName = ?, vehicleModel = ?, vehicleType = ?, fuelType = ?, price = ?, modelYear = ?, engineSize = ?, vehiclePhoto = ?, vehiclePhototwo = ? WHERE id = ?";
+            stmt = connection.prepareStatement(query);
+
+            // Set the values in the query using the Vehicle object data
+            stmt.setString(1, vehicle.getVehicleName());
+            stmt.setString(2, vehicle.getVehicleModel());
+            stmt.setString(3, vehicle.getVehicleType());
+            stmt.setString(4, vehicle.getFuelType());
+            stmt.setDouble(5, vehicle.getPrice());
+            stmt.setInt(6, vehicle.getModelYear());
+            stmt.setString(7, vehicle.getEngineSize());
+            stmt.setBlob(8, vehicle.getVehiclePhoto());
+            stmt.setBlob(9, vehicle.getvehiclePhototwo());
+            stmt.setInt(10, vehicle.getId());
+
+            // Execute the update query
+            int rowsUpdated = stmt.executeUpdate();
+
+            // Check if any rows were updated
+            if (rowsUpdated > 0) {
+                isUpdated = true;
+            } else {
+                System.out.println("No rows updated.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Always close resources in finally block
+            try {
+                if (stmt != null) stmt.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
-        // Handle second vehicle photo (secondary image)
-        if (vehicle.getvehiclePhototwo() != null) {
-            ps.setBytes(9, convertInputStreamToBytes(vehicle.getvehiclePhototwo())); // second vehicle photo
-        } else {
-            ps.setNull(9, java.sql.Types.BLOB); // Set NULL if no second image
-        }
-
-        // Set the vehicle ID to update the right record (last parameter)
-        ps.setInt(10, vehicle.getId()); // Correct index for vehicle ID
-
-        // Debugging: Log the query execution
-        System.out.println("Executing update query: " + ps.toString());
-
-        int rowsAffected = ps.executeUpdate(); // Execute the update query
-        return rowsAffected > 0; // Return true if the update is successful
-
-    } catch (SQLException | IOException e) {
-        e.printStackTrace(); // Print full stack trace for debugging
-        return false; // Return false if there was an error
-    } catch (ClassNotFoundException e) {
-        e.printStackTrace(); // Print full stack trace for debugging
-        return false;
+        return isUpdated;
     }
-}
-
-// Helper method to convert InputStream to byte[]
-private byte[] convertInputStreamToBytes(InputStream inputStream) throws IOException {
-    if (inputStream == null) {
-        return null; // Return null if InputStream is null
-    }
-
-    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    byte[] buffer = new byte[1024];
-    int length;
-
-    while ((length = inputStream.read(buffer)) != -1) {
-        byteArrayOutputStream.write(buffer, 0, length);
-    }
-    return byteArrayOutputStream.toByteArray(); // Return the byte array
-}
 
 public boolean deleteVehicle(int vehicleId) {
     String query = "DELETE FROM vehicles WHERE id = ?";

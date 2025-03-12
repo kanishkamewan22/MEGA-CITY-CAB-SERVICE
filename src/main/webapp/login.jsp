@@ -101,7 +101,7 @@
             font-weight: bold;
         }
 
-        input[type="text"], input[type="password"], select {
+        input[type="text"], input[type="password"], input[type="email"], select {
             padding: 12px;
             margin-bottom: 20px;
             border: 1px solid #ddd;
@@ -112,7 +112,7 @@
             transition: all 0.3s ease;
         }
 
-        input[type="text"]:focus, input[type="password"]:focus, select:focus {
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus {
             border-color: #1e90ff;
             box-shadow: 0 4px 12px rgba(30, 144, 255, 0.1);
             outline: none;
@@ -189,9 +189,8 @@
                     <%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>
                 </p>  
                 
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" />
-
+               <label for="email">Email</label>
+               <input type="email" id="email" name="email" placeholder="Enter your email" required />
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" />
 

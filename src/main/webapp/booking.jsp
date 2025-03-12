@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
+    
+     
+     
         /* Swiper Image Container */
         .swiper {
             width: 100%;
@@ -82,13 +86,30 @@
                 <div class="form-container">
                  <br><br>   <h2>Book Your Vehicle</h2>
 
-                    <!-- Display error message if available -->
-                    <c:if test="${not empty error}">
-                        <div class="alert alert-danger">
-                            ${error}
-                        </div>
-                    </c:if>
+                 <c:if test="${not empty message}">
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '${message}',
+                    confirmButtonText: 'OK'
+                }).then(function() {
+                    // Redirect after clicking OK
+                    window.location.href = "http://localhost:8090/mega_city_cab_service/vehicles";
+                });
+            </script>
+        </c:if>
 
+        <c:if test="${not empty error}">
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '${error}',
+                    confirmButtonText: 'OK'
+                });
+            </script>
+        </c:if>
  
     
 

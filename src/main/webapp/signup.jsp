@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,6 +152,8 @@
             }
         }
     </style>
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 
@@ -162,29 +163,23 @@
             <div class="company-name">TechFix Computer</div>
         </div>
         <div class="navbar-links">
-            <a href=""><i class="fas fa-home"></i> Home</a>
+            <a href="http://localhost:7750/myasiment/home.jsp"><i class="fas fa-home"></i> Home</a>
         </div>
     </div>  
-     
-   
-      
-       
-        
-       <div class="container">
+
+    <div class="container">
         <div class="image-container"></div> <!-- Image Section -->
         <div class="signup-container">
             <h2>Create an Account</h2>
 
             <form method="post" action="mewan">
-            
-                <p class="error-message">
-                <%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+                <!-- Display error message if any -->
+                <p class="error-message" style="color: red;">
+                    <%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
                 </p>
-                <p class="success-message">
+                <p class="success-message" style="color: green;">
                     <%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>
                 </p> 
-                
-                
                 
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required />
@@ -208,12 +203,11 @@
                 <input type="submit" value="Sign Up" />
 
                 <p>Already have an account? <a href="http://localhost:7750/myasiment/login.jsp">Login here</a></p>
-                
-
-
-                <p>Already have an account? <a href="login.jsp">Login here</a></p>
             </form>
         </div>
     </div>
+
+   
+
 </body>
 </html>

@@ -136,13 +136,17 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="http://localhost:8090/assiment/VehicleService"><i class="fas fa-home"></i> Adimin Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="http://localhost:8090/assiment/vehicalregister.jsp"><i class="fas fa-car"></i> Add Vehicle</a></li>
-                    <li class="nav-item"><a class="nav-link" href="http://localhost:8090/assiment/viewBookings"><i class="fas fa-book"></i> View Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost:8090/mega_city_cab_service/viewBookings"><i class="fas fa-book"></i> View Bookings</a></li>
                     <li class="nav-item"><a class="nav-link" href="my.jsp"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
                    
                 </ul>
             </div>
         </div>
     </nav>
+    
+     <c:if test="${not empty sessionScope.email}">
+            <p>Welcome, <strong>${sessionScope.email}</strong></p>  <!-- Display the email -->
+        </c:if>
 
     <!-- Vehicle Display Section -->
     <div class="container mt-5 pt-5">
@@ -168,7 +172,7 @@
                         <div class="vehicle-card-footer text-center">
                       <!-- In the vehicle display section -->
                     <a href="http://localhost:8090/mega_city_cab_service/delete?vehicleid=${vehicle.id}" class="btn btn-book-now">Delete</a>
-                    <a href="http://localhost:8090/packtis/updateVehicle?vehicleid=${vehicle.id}" class="btn btn-book-now">Update</a>
+                    <a href="http://localhost:8090/mega_city_cab_service/updat?vehicleid=${vehicle.id}" class="btn btn-book-now">Update</a>
                     
 
 

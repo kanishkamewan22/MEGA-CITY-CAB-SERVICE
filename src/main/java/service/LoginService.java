@@ -10,7 +10,7 @@ import contoller.database;
 public class LoginService {
 
     // This method validates the user based on their username, password, and position
-    public boolean validateUser(String username, String password, String position) {
+    public boolean validateUser(String email, String password, String position) {
         String table = position.equals("Administrator") ? "administrators" : "clients";
         
         // SQL query to check for matching username and password
@@ -20,7 +20,7 @@ public class LoginService {
              PreparedStatement ps = con.prepareStatement(query)) {
 
             // Setting the parameters for the SQL query
-            ps.setString(1, username);
+            ps.setString(1, email);
             ps.setString(2, password);  // Normally, you should hash the password before storing it
 
             // Execute the query and check if a matching record exists
