@@ -7,11 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Vehicle Bookings</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</script>
+    
+    <style>
+     .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+              background: rgba(0, 0, 0, 0.7) !important; 
+            transition: background 0.3s ease-in-out;
+        }
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.7) !important; /* Dark background on scroll */
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #28a745 !important; /* Green hover effect */
+        }
+    
+    
+    
+    </style>
 </head>
 <body>
 
-   <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-car"></i> MEGA<span class="text-success">CITY</span> <i class=></i> CABS
@@ -21,14 +56,18 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="home.jsp"><i class="fas fa-home"></i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="vehicles"><i class="fas fa-car"></i> Add Vehicle</a></li>
-                    <li class="nav-item"><a class="nav-link" href="viewBookings"><i class="fas fa-book"></i> View Bookings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.jsp"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.jsp"><i class="fas fa-user-plus"></i> Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost:8090/mega_city_cab_service/vehicles"><i class="fas fa-home"></i> Home</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="my.jsp"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup.jsp"><i class="fas fa-user-plus"></i> Register</a></li>
+
+                      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/mega_city_cab_service/viewBookingsByEmail"><i class="fas fa-book"></i> View Bookings</a></li>
                 </ul>
             </div>
         </div>
+        
+        
+        
     </nav>
 
     <div class="container mt-5">

@@ -9,6 +9,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 
     <style>
         body {
@@ -21,11 +27,35 @@
             height: 100vh;
         }
 
+      .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7) !important; 
+            transition: background 0.3s ease-in-out;
+        }
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.7) !important; /* Dark background on scroll */
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #28a745 !important; /* Green hover effect */
+        }
         .container {
             display: flex;
             max-width: 900px;
             width: 100%;
             height: 105%;
+             margin-top: 120px;
         }
 
         .form-container {
@@ -37,6 +67,7 @@
             border-radius: 12px;
             text-align: center;
             height: 140vh;
+             margin-top: 120px;
         }
 
         h2 {
@@ -53,6 +84,7 @@
             background-position: center;
             border-radius: 12px 0 0 12px;
             height: 140vh;
+             margin-top: 120px;
         }
 
         form {
@@ -119,12 +151,119 @@
             .image-container {
                 height: 250px;
                 border-radius: 12px 12px 0 0;
-            }
+            
+
         }
+        
+  
+                  /* Footer Styling */
+        .footer {
+            background-color: #070442;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-section {
+            margin: 0 15px;
+        }
+
+        .footer-section h5 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+        }
+
+        .footer-section p, .footer-section ul {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: #f0c040;
+            font-weight: bold;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #f0c040;
+            font-size: 28px; /* Adjusted size for hover effect */
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 10px;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+        
     </style>
 </head>
 <body>
 
+ <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-car"></i> MEGA<span class="text-success">CITY</span> <i class=></i> CABS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"> 
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="http://localhost:8090/mega_city_cab_service/adminp"><i class="fas fa-home"></i> Adimin Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="vehicalregister.jsp"><i class="fas fa-car"></i> Add Vehicle</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost:8090/mega_city_cab_service/viewBookings"><i class="fas fa-book"></i> View Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="my.jsp"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
 <div class="container">
     <div class="image-container"></div>
     <div class="form-container">

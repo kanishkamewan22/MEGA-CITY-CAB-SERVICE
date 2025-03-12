@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Signup</title>
+    
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
     <style>
         /* General Styles */
         body {
@@ -12,46 +20,29 @@
             background-color: #f4f4f4;
         }
 
-        .navbar {
-            background-color: #070442;
-            color: white;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+         .navbar {
             position: fixed;
             width: 100%;
-            height: 80px;
-            top: 0;
             z-index: 1000;
+              background: rgba(0, 0, 0, 0.7) !important; 
+            transition: background 0.3s ease-in-out;
         }
-
-        .navbar .company-icon img {
-            height: 60px;
-            margin-right: 15px;
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.7) !important; /* Dark background on scroll */
         }
-
-        .navbar-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
+        .navbar-brand {
+            font-size: 24px;
             font-weight: bold;
+            color: white !important;
         }
-
-        .navbar a:hover {
-            background-color: #575757;
-            color: yellow;
+        .navbar-nav .nav-link {
+            color: white !important;
             font-weight: bold;
-            font-size: 30px;
+            transition: color 0.3s ease;
         }
-
+        .navbar-nav .nav-link:hover {
+            color: #28a745 !important; /* Green hover effect */
+        }
         .container {
             display: flex;
             max-width: 900px;
@@ -157,15 +148,25 @@
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="company-icon">
-            <img src="image/logo.JPG" alt="Logo">
-            <div class="company-name">TechFix Computer</div>
+   <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-car"></i> MEGA<span class="text-success">CITY</span> <i class=></i> CABS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"> 
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="my.jsp"><i class="fas fa-home"></i> Home</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="login.jsp"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup.jsp"><i class="fas fa-user-plus"></i> Register</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="navbar-links">
-            <a href="http://localhost:7750/myasiment/home.jsp"><i class="fas fa-home"></i> Home</a>
-        </div>
-    </div>  
+    </nav>
+ 
 
     <div class="container">
         <div class="image-container"></div> <!-- Image Section -->
@@ -202,7 +203,7 @@
 
                 <input type="submit" value="Sign Up" />
 
-                <p>Already have an account? <a href="http://localhost:7750/myasiment/login.jsp">Login here</a></p>
+                <p>Already have an account? <a href="login.jsp">Login here</a></p>
             </form>
         </div>
     </div>

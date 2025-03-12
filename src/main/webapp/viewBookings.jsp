@@ -46,7 +46,7 @@
 </head>
 <body>
 
-   <nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-car"></i> MEGA<span class="text-success">CITY</span> <i class=></i> CABS
@@ -56,11 +56,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-car"></i> Add Vehicle</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book"></i> View Bookings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.jsp"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.jsp"><i class="fas fa-user-plus"></i> Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost:8090/mega_city_cab_service/adminp"><i class="fas fa-home"></i> Adimin Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="vehicalregister.jsp"><i class="fas fa-car"></i> Add Vehicle</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost:8090/mega_city_cab_service/viewBookings"><i class="fas fa-book"></i> View Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="my.jsp"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                   
                 </ul>
             </div>
         </div>
